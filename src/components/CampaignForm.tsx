@@ -286,15 +286,18 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
   const canSend = selectedInstance?.connectionStatus === 'open';
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-yellow-200">
-      <div className="p-6 border-b border-yellow-200">
-        <h2 className="text-lg font-semibold text-gray-900 flex items-center">
-          <MessageSquare className="w-5 h-5 mr-2 text-yellow-600" />
+    <div className="bg-white rounded-2xl shadow-xl border border-yellow-100 overflow-hidden">
+      <div className="p-8 border-b border-yellow-100 bg-gradient-to-r from-yellow-50 to-white">
+        <h2 className="text-2xl font-bold text-gray-900 flex items-center">
+          <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center mr-4 shadow-lg">
+            <MessageSquare className="w-5 h-5 text-white" />
+          </div>
           Nova Campanha
         </h2>
+        <p className="text-gray-600 mt-2">Crie e gerencie suas campanhas de WhatsApp</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 space-y-6">
+      <form onSubmit={handleSubmit} className="p-8 space-y-8">
         {/* Seleção de Instância */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -303,7 +306,7 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
           <select
             value={formData.instanceId}
             onChange={(e) => setFormData({ ...formData, instanceId: e.target.value })}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-yellow-100 focus:border-yellow-400 transition-all duration-200 bg-white hover:border-yellow-300"
             required
           >
             <option value="">Selecione uma instância</option>
@@ -369,9 +372,9 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
             />
             <label
               htmlFor="image-upload"
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-yellow-500 focus:border-transparent cursor-pointer transition-colors"
+              className="inline-flex items-center px-6 py-3 border-2 border-yellow-300 rounded-xl text-sm font-semibold text-yellow-700 bg-gradient-to-r from-yellow-50 to-yellow-100 hover:from-yellow-100 hover:to-yellow-200 focus:ring-4 focus:ring-yellow-100 cursor-pointer transition-all duration-200 transform hover:scale-105 shadow-md"
             >
-              <Upload className="w-4 h-4 mr-2" />
+              <Upload className="w-5 h-5 mr-2" />
               Upload Imagem
             </label>
             
@@ -421,9 +424,9 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
               />
               <label
                 htmlFor="csv-upload"
-                className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:ring-2 focus:ring-yellow-500 focus:border-transparent cursor-pointer transition-colors"
+                className="inline-flex items-center px-6 py-3 border-2 border-yellow-300 rounded-xl text-sm font-semibold text-yellow-700 bg-gradient-to-r from-yellow-50 to-yellow-100 hover:from-yellow-100 hover:to-yellow-200 focus:ring-4 focus:ring-yellow-100 cursor-pointer transition-all duration-200 transform hover:scale-105 shadow-md"
               >
-                <Upload className="w-4 h-4 mr-2" />
+                <Upload className="w-5 h-5 mr-2" />
                 Upload CSV
               </label>
               
@@ -508,10 +511,12 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
 
         {/* Estimativa de Término */}
         {estimatedEndTime && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-            <div className="flex items-center space-x-2 mb-3">
-              <Calendar className="w-5 h-5 text-blue-600" />
-              <h3 className="text-sm font-medium text-blue-900">Estimativa de Término dos Disparos</h3>
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-6 shadow-lg">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-lg font-bold text-blue-900">Estimativa de Término dos Disparos</h3>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -562,9 +567,9 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
           <button
             type="submit"
             disabled={!canSend}
-            className={`inline-flex items-center px-6 py-3 text-sm font-medium rounded-lg transition-colors ${
+            className={`inline-flex items-center px-8 py-4 text-base font-bold rounded-xl transition-all duration-200 transform hover:scale-105 ${
               canSend
-                ? 'bg-yellow-600 text-white hover:bg-yellow-700'
+                ? 'bg-gradient-to-r from-yellow-500 to-yellow-600 text-white hover:from-yellow-600 hover:to-yellow-700 shadow-lg hover:shadow-xl'
                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
             }`}
           >

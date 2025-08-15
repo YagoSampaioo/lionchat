@@ -53,12 +53,17 @@ export default function CampaignHistory({ campaigns }: CampaignHistoryProps) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-yellow-200">
-      <div className="p-6 border-b border-yellow-200">
-        <h2 className="text-lg font-semibold text-gray-900">Histórico de Campanhas</h2>
+    <div className="bg-white rounded-2xl shadow-xl border border-yellow-100 overflow-hidden">
+      <div className="p-8 border-b border-yellow-100 bg-gradient-to-r from-yellow-50 to-white">
+        <div className="flex items-center space-x-4">
+          <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
+            <Calendar className="w-6 h-6 text-white" />
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900">Histórico de Campanhas</h2>
+        </div>
       </div>
 
-      <div className="p-6">
+      <div className="p-8">
         {campaigns.length === 0 ? (
           <div className="text-center py-8">
             <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-4" />
@@ -68,7 +73,7 @@ export default function CampaignHistory({ campaigns }: CampaignHistoryProps) {
         ) : (
           <div className="space-y-4">
             {campaigns.map((campaign) => (
-              <div key={campaign.id} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <div key={campaign.id} className="border-2 border-gray-100 rounded-2xl p-6 hover:border-yellow-200 hover:shadow-lg transition-all duration-200 bg-gradient-to-r from-white to-gray-50">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
                     <div className="flex items-center space-x-3 mb-2">

@@ -101,24 +101,29 @@ export default function InstanceManager({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-      <div className="p-6 border-b border-gray-200">
+    <div className="bg-white rounded-2xl shadow-xl border border-yellow-100 overflow-hidden">
+      <div className="p-8 border-b border-yellow-100 bg-gradient-to-r from-yellow-50 to-white">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900">Instâncias WhatsApp</h2>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg">
+              <Smartphone className="w-6 h-6 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Instâncias WhatsApp</h2>
+          </div>
           <div className="flex space-x-3">
             <button
               onClick={fetchInstances}
               disabled={loading}
-              className="inline-flex items-center px-3 py-2 bg-gray-100 text-gray-700 text-sm font-medium rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50"
+              className="inline-flex items-center px-4 py-3 bg-gradient-to-r from-gray-100 to-gray-200 text-gray-700 text-sm font-semibold rounded-xl hover:from-gray-200 hover:to-gray-300 transition-all duration-200 disabled:opacity-50 shadow-md"
             >
               <RefreshCw className={`w-4 h-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
               Atualizar
             </button>
             <button
               onClick={() => setShowCreateForm(true)}
-              className="inline-flex items-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-lg hover:bg-yellow-700 transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-sm font-semibold rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              <Plus className="w-4 h-4 mr-2" />
+              <Plus className="w-5 h-5 mr-2" />
               Nova Instância
             </button>
           </div>
