@@ -16,7 +16,7 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
     image: '',
     contacts: '',
     scheduledAt: '',
-    delayBetweenMessages: 5
+    delayBetweenMessages: 30
   });
 
   const [csvFileName, setCsvFileName] = useState<string>('');
@@ -220,6 +220,12 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
       return;
     }
 
+    // Validar tempo entre mensagens
+    if (formData.delayBetweenMessages < 30) {
+      alert('O tempo entre mensagens deve ser de no mínimo 30 segundos');
+      return;
+    }
+
     const contactList = formData.contacts
       .split('\n')
       .map(contact => contact.trim())
@@ -274,7 +280,7 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
       image: '',
       contacts: '',
       scheduledAt: '',
-      delayBetweenMessages: 5
+      delayBetweenMessages: 30
     });
     
     // Limpar dados do CSV
@@ -486,8 +492,11 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
               value={formData.scheduledAt}
               onChange={(e) => setFormData({ ...formData, scheduledAt: e.target.value })}
               min={getMinDateTime()}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-yellow-100 focus:border-yellow-400 transition-all duration-200 bg-white hover:border-yellow-300"
             />
+            <p className="mt-1 text-sm text-gray-500">
+              Selecione uma data e hora futura para agendar a campanha
+            </p>
           </div>
 
           {/* Delay entre mensagens */}
@@ -498,14 +507,24 @@ export default function CampaignForm({ instances, selectedInstanceId, onSendCamp
             <input
               type="number"
               value={formData.delayBetweenMessages}
-              onChange={(e) => setFormData({ ...formData, delayBetweenMessages: parseInt(e.target.value) || 5 })}
-              min="1"
+              onChange={(e) => {
+                const value = parseInt(e.target.value) || 30;
+                // Forçar valor mínimo de 30
+                const validatedValue = Math.max(30, value);
+                setFormData({ ...formData, delayBetweenMessages: validatedValue });
+              }}
+              min="30"
               max="300"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-yellow-100 focus:border-yellow-400 transition-all duration-200 bg-white hover:border-yellow-300"
             />
             <p className="mt-1 text-sm text-gray-500">
-              Recomendado: 5-10 segundos para evitar bloqueios
+              Recomendado: 30-60 segundos para evitar bloqueios
             </p>
+            {formData.delayBetweenMessages < 30 && (
+              <p className="mt-1 text-sm text-red-600 font-medium">
+                ⚠️ O tempo mínimo é de 30 segundos
+              </p>
+            )}
           </div>
         </div>
 

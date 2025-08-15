@@ -54,34 +54,20 @@ export interface CreateInstanceResponse {
   };
 }
 
-export interface Campaign {
-  id: string;
-  name: string;
+export interface WebhookPayload {
   instanceId: string;
+  instanceName: string;
+  campaignId: string;
   message: string;
   image?: string;
   contacts: Contact[];
+  totalContacts: number;
   delayBetweenMessages: number;
-  status: 'draft' | 'scheduled' | 'running' | 'completed' | 'paused';
-  createdAt: string;
-  sentCount: number;
-  totalCount: number;
+  scheduledAt?: string;
 }
 
 export interface Contact {
   row_number: number;
   Number: string;
   contact_id: string;
-}
-
-export interface WebhookPayload {
-  instanceId: string;
-  instanceName: string;
-  campaignId: string;
-  message: string;
-  image?: string; // Base64 string
-  contacts: Contact[];
-  totalContacts: number;
-  delayBetweenMessages: number;
-  scheduledAt?: string;
 }
